@@ -53,17 +53,5 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         return findByUserName(username);
     }
 
-    @Override
-    public void autoLogin(String username, String password) {
-        UserDetails userDetails = findByUserName(username);
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(userDetails,password,userDetails.getAuthorities());
-        authenticationManager.authenticate(authenticationToken);
-
-        if(authenticationToken.isAuthenticated()){
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        }
-
-    }
 }
 

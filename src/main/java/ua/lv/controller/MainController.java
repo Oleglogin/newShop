@@ -28,6 +28,14 @@ public class MainController {
         return "welcome";
     }
 
+    @GetMapping(value = "/welcome")
+    public String toWelcomePage(Model model, Principal principal){
+        String principalName = principal.getName();
+        User byUserName = userService.findByUserName(principalName);
+        model.addAttribute("currentUser",byUserName);
+        return "welcome";
+    }
+
 
 
 }
